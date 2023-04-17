@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     //MARK: - Elements
     private let backgroundImageView: UIImageView = {
@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = Theme.accentColor.cgColor
-        button.addTarget(self, action: #selector(startScreenPrint), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToTeams), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
         button.backgroundColor = Theme.appColor
         button.tintColor = .white
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(rulesScreenPrint), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToRules), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -65,12 +65,16 @@ class MainViewController: UIViewController {
         view.addSubview(rulesButton)
     }
     
-    @objc private func startScreenPrint() {
+    @objc private func goToTeams() {
         print("Start")
+        let vc = TeamsViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc private func rulesScreenPrint() {
+    @objc private func goToRules() {
         print("Rules")
+        let vc = RulesViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
