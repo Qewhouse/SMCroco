@@ -9,16 +9,10 @@ import UIKit
 
 final class RulesViewController: UIViewController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         view.backgroundColor = .yellow
         title = "Rules"
         navigationItem.backBarButtonItem?.isEnabled = true
     }
-    
-    
-    
-    
 }

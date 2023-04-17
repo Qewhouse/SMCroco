@@ -27,7 +27,6 @@ final class TeamsViewController: UIViewController {
         navigationItem.backBarButtonItem?.isEnabled = true
         view.addSubview(readyButton)
         setConstraints()
-        
     }
     
     @objc private func goToCategory() {
@@ -35,7 +34,6 @@ final class TeamsViewController: UIViewController {
         let vc = CategoryViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 extension TeamsViewController {

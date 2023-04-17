@@ -12,11 +12,7 @@ final class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        
         title = "Категории"
         navigationItem.backBarButtonItem?.isEnabled = true
-        
     }
-    
-    
 }
