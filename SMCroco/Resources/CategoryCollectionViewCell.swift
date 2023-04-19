@@ -9,10 +9,10 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
-//    let categoryVC = CategoryViewController()
     static let identifier = "CategoryCVCell"
     let category = Category()
-    var index = 0
+    var flag = 0
+    var indexCategory = 0
     
     //MARK: - Elements
     
@@ -80,16 +80,12 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func choiceCategory() {
-   
-        if index == 0 {
-            markImageView.isHidden = false
-            index = 1
-        } else {
-            markImageView.isHidden = true
-            index = 0
+            if flag == 0 {
+                markImageView.isHidden = false
+                flag = 1
+            } else {
+                markImageView.isHidden = true
+                flag = 0
+            }
         }
-
-        
-    }
-    
 }
