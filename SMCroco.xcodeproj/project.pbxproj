@@ -22,6 +22,8 @@
 		37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */; };
 		E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */; };
 		E4E9814829EF28DE000EAB43 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814729EF28DE000EAB43 /* Teams.swift */; };
+		E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814B29EFCD50000EAB43 /* Category.swift */; };
+		E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsViewController.swift; sourceTree = "<group>"; };
 		E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4E9814729EF28DE000EAB43 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		E4E9814B29EFCD50000EAB43 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				37A4E37829EDC05100AD2B3E /* Theme.swift */,
 				E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */,
 				E4E9814729EF28DE000EAB43 /* Teams.swift */,
+				E4E9814B29EFCD50000EAB43 /* Category.swift */,
+				E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -189,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */,
+				E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */,
 				37A4E37929EDC05100AD2B3E /* Theme.swift in Sources */,
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
 				37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */,
@@ -201,6 +208,7 @@
 				E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */,
 				37A4E36729EDB51D00AD2B3E /* SceneDelegate.swift in Sources */,
 				37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */,
+				E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
