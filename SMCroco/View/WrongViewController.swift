@@ -1,8 +1,8 @@
 //
-//  WrongViewController.swift
+//  CorrectViewController.swift
 //  SMCroco
 //
-//  Created by Damir Zaripov on 18.04.2023.
+//  Created by Damir Zaripov on 17.04.2023.
 //
 
 import UIKit
@@ -99,7 +99,6 @@ class WrongViewController: UIViewController {
     private let receiveLabel: UILabel = {
         let label = UILabel()
         label.text = "Вы не отгадали слово и не получаете очков!"
-
         label.font = label.font.withSize(16)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -175,8 +174,8 @@ class WrongViewController: UIViewController {
             teamImageView.heightAnchor.constraint(equalToConstant: 56),
             teamImageView.widthAnchor.constraint(equalToConstant: 56),
             teamImageView.topAnchor.constraint(equalTo: whiteCellView.topAnchor, constant: 20),
-            teamImageView.leadingAnchor.constraint(equalTo: whiteCellView.leadingAnchor, constant: 15),
-            teamImageView.trailingAnchor.constraint(equalTo: whiteCellView.trailingAnchor, constant: -280),
+            teamImageView.leadingAnchor.constraint(equalTo: whiteCellView.leadingAnchor, constant: 50),
+            teamImageView.trailingAnchor.constraint(equalTo: whiteCellView.trailingAnchor, constant: -350),
             teamImageView.bottomAnchor.constraint(equalTo: whiteCellView.bottomAnchor, constant: -20),
             teamImageView.centerXAnchor.constraint(equalTo: whiteCellView.centerXAnchor),
             
@@ -193,8 +192,8 @@ class WrongViewController: UIViewController {
             totalScoreNumberLabel.widthAnchor.constraint(equalToConstant: 57),
             totalScoreNumberLabel.centerYAnchor.constraint(equalTo: whiteCellView.centerYAnchor),
             totalScoreNumberLabel.centerXAnchor.constraint(equalTo: whiteCellView.centerXAnchor),
-            totalScoreNumberLabel.topAnchor.constraint(equalTo: whiteCellView.topAnchor, constant: 15),
-            totalScoreNumberLabel.bottomAnchor.constraint(equalTo: whiteCellView.bottomAnchor, constant: -19),
+            totalScoreNumberLabel.topAnchor.constraint(equalTo: whiteCellView.topAnchor, constant: 10),
+            totalScoreNumberLabel.bottomAnchor.constraint(equalTo: whiteCellView.bottomAnchor, constant: -20),
             totalScoreNumberLabel.leadingAnchor.constraint(equalTo: whiteCellView.leadingAnchor, constant: 290),
             totalScoreNumberLabel.trailingAnchor.constraint(equalTo: whiteCellView.trailingAnchor, constant: -4),
             
@@ -219,8 +218,8 @@ class WrongViewController: UIViewController {
             whiteCellView.heightAnchor.constraint(equalToConstant: 96),
             whiteCellView.widthAnchor.constraint(equalToConstant: 351),
             whiteCellView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            whiteCellView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 84),
-            whiteCellView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -637),
+            whiteCellView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 50),
+            whiteCellView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -750),
             whiteCellView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 12),
             whiteCellView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -12),
             whiteCellView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -238,8 +237,8 @@ class WrongViewController: UIViewController {
             failureLabel.widthAnchor.constraint(equalToConstant: 203),
             failureLabel.centerYAnchor.constraint(equalTo: redRectangleView.centerYAnchor),
             failureLabel.centerXAnchor.constraint(equalTo: redRectangleView.centerXAnchor),
-            failureLabel.topAnchor.constraint(equalTo: redRectangleView.topAnchor, constant: 43),
-            failureLabel.bottomAnchor.constraint(equalTo: redRectangleView.bottomAnchor, constant: -236),
+            failureLabel.topAnchor.constraint(equalTo: redRectangleView.topAnchor, constant: 10),
+            failureLabel.bottomAnchor.constraint(equalTo: redRectangleView.bottomAnchor, constant: -350),
             failureLabel.leadingAnchor.constraint(equalTo: redRectangleView.leadingAnchor, constant: 82),
             failureLabel.trailingAnchor.constraint(equalTo: redRectangleView.trailingAnchor, constant: -66),
             
@@ -247,25 +246,21 @@ class WrongViewController: UIViewController {
             receiveLabel.widthAnchor.constraint(equalToConstant: 301),
             receiveLabel.centerYAnchor.constraint(equalTo: redRectangleView.centerYAnchor),
             receiveLabel.centerXAnchor.constraint(equalTo: redRectangleView.centerXAnchor),
-            receiveLabel.topAnchor.constraint(equalTo: redRectangleView.topAnchor, constant: 89),
-            receiveLabel.bottomAnchor.constraint(equalTo: ellipseImageView.topAnchor, constant: -9),
-            receiveLabel.leadingAnchor.constraint(equalTo: redRectangleView.leadingAnchor, constant: 10),
-            receiveLabel.trailingAnchor.constraint(equalTo: redRectangleView.trailingAnchor, constant: -10),
+            receiveLabel.topAnchor.constraint(equalTo: failureLabel.topAnchor, constant: 50),
+            receiveLabel.bottomAnchor.constraint(equalTo: ellipseImageView.topAnchor, constant: -3.48),
+            receiveLabel.leadingAnchor.constraint(equalTo: redRectangleView.leadingAnchor, constant: 28.57),
+            receiveLabel.trailingAnchor.constraint(equalTo: redRectangleView.trailingAnchor, constant: -21.43),
             
-            scoreNumberLabel.heightAnchor.constraint(equalToConstant: 46),
+            scoreNumberLabel.heightAnchor.constraint(equalToConstant: 58.16),
             scoreNumberLabel.widthAnchor.constraint(equalToConstant: 58.16),
             scoreNumberLabel.centerYAnchor.constraint(equalTo: ellipseImageView.centerYAnchor),
             scoreNumberLabel.centerXAnchor.constraint(equalTo: ellipseImageView.centerXAnchor),
-            scoreNumberLabel.topAnchor.constraint(equalTo: ellipseImageView.topAnchor, constant: 31),
-            scoreNumberLabel.bottomAnchor.constraint(equalTo: ellipseImageView.bottomAnchor, constant: -30),
-            scoreNumberLabel.leadingAnchor.constraint(equalTo: ellipseImageView.leadingAnchor, constant: 21.18),
-            scoreNumberLabel.trailingAnchor.constraint(equalTo: ellipseImageView.trailingAnchor, constant: -20),
             
             nextTurnLabel.heightAnchor.constraint(equalToConstant: 22),
             nextTurnLabel.widthAnchor.constraint(equalToConstant: 301),
             nextTurnLabel.centerYAnchor.constraint(equalTo: redRectangleView.centerYAnchor),
             nextTurnLabel.centerXAnchor.constraint(equalTo: redRectangleView.centerXAnchor),
-            nextTurnLabel.topAnchor.constraint(equalTo: redRectangleView.topAnchor, constant: 233),
+            nextTurnLabel.topAnchor.constraint(equalTo: ellipseImageView.topAnchor, constant: 200),
             nextTurnLabel.bottomAnchor.constraint(equalTo: redRectangleView.bottomAnchor, constant: -10),
             nextTurnLabel.leadingAnchor.constraint(equalTo: redRectangleView.leadingAnchor, constant: 31.63),
             nextTurnLabel.trailingAnchor.constraint(equalTo: redRectangleView.trailingAnchor, constant: -18.37),
