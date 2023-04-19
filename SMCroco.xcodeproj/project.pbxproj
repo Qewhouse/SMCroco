@@ -20,6 +20,10 @@
 		37A4E38629EE022900AD2B3E /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38529EE022900AD2B3E /* CorrectViewController.swift */; };
 		37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38729EE023500AD2B3E /* WrongViewController.swift */; };
 		37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */; };
+		E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */; };
+		E4E9814829EF28DE000EAB43 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814729EF28DE000EAB43 /* Teams.swift */; };
+		E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814B29EFCD50000EAB43 /* Category.swift */; };
+		E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		37A4E38529EE022900AD2B3E /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		37A4E38729EE023500AD2B3E /* WrongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsViewController.swift; sourceTree = "<group>"; };
+		E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
+		E4E9814729EF28DE000EAB43 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		E4E9814B29EFCD50000EAB43 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,10 @@
 			children = (
 				37A4E36D29EDB51E00AD2B3E /* Assets.xcassets */,
 				37A4E37829EDC05100AD2B3E /* Theme.swift */,
+				E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */,
+				E4E9814729EF28DE000EAB43 /* Teams.swift */,
+				E4E9814B29EFCD50000EAB43 /* Category.swift */,
+				E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -184,16 +196,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */,
+				E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */,
 				37A4E37929EDC05100AD2B3E /* Theme.swift in Sources */,
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
 				37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */,
 				37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */,
 				37A4E38429EE021500AD2B3E /* GameViewController.swift in Sources */,
 				37A4E37E29EE01DE00AD2B3E /* TeamsViewController.swift in Sources */,
+				E4E9814829EF28DE000EAB43 /* Teams.swift in Sources */,
 				37A4E38629EE022900AD2B3E /* CorrectViewController.swift in Sources */,
 				37A4E38029EE01EA00AD2B3E /* RulesViewController.swift in Sources */,
+				E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */,
 				37A4E36729EDB51D00AD2B3E /* SceneDelegate.swift in Sources */,
 				37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */,
+				E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -315,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -332,7 +348,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2JBA92AKK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SMCroco/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -360,7 +376,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2JBA92AKK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SMCroco/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
