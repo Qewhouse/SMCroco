@@ -11,7 +11,8 @@ enum Theme {
     
     static let appColor: UIColor = UIColor(named: "AppColor")!
     static let accentColor: UIColor = UIColor(named: "AccentColor")!
-    static let wrongViewControllerColor: UIColor = UIColor(named: "WrongRectangleColor")!
+    static let wrongColor: UIColor = UIColor(named: "WrongRectangleColor")!
+    static let neutralColor: UIColor = UIColor(named: "NeutralColor")!
     
 }
 

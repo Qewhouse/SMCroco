@@ -1,5 +1,5 @@
 //
-//  CorrectViewController.swift
+//  WrongViewController.swift
 //  SMCroco
 //
 //  Created by Damir Zaripov on 17.04.2023.
@@ -39,7 +39,7 @@ class WrongViewController: UIViewController {
     
     private let redRectangleView: UIView = {
         let view = UIView()
-        view.backgroundColor = Theme.wrongViewControllerColor
+        view.backgroundColor = Theme.wrongColor
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 20
         view.translatesAutoresizingMaskIntoConstraints = false
