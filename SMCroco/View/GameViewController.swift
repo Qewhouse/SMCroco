@@ -192,4 +192,3 @@ class GameViewController: UIViewController {
             buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
     }
-}
