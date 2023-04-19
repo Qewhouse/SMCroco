@@ -7,66 +7,62 @@
 
 import UIKit
 
-final class RulesViewController: UIViewController {
+class RulesViewController: UIViewController {
     
-    private lazy var scrollView: UIScrollView = {
-
-        let scrollView = UIScrollView()
-        scrollView.backgroundColor = .green
-        scrollView.frame = view.bounds
-        scrollView.contentSize = contentSize
-        return scrollView
-        
-    }()
+    private let scrollView = UIScrollView()
+    private let backButton = UIButton(type: .system)
+    private let label = UILabel()
     
-    private lazy var contentView: UIView = {
-        
-        let contentView = UIView()
-        contentView.backgroundColor = .green
-        contentView.frame.size = contentSize
-        return contentView
-        
-    }()
-    
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.spacing = 20
-        return stackView
-        
-    }()
-    
-    private var contentSize: CGSize {
-        CGSize(width:view.frame.width, height: view.frame.height + 300)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(stackView)
         
+        setupScrollView()
+        setupBackButton()
+        setupLabel()
+    }
+    
+    private func setupScrollView() {
+        scrollView.frame = view.bounds
+        scrollView.backgroundColor = .green
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.showsVerticalScrollIndicator = true
+        view.addSubview(scrollView)
+    }
+    
+    private func setupBackButton() {
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        backButton.tintColor = .black
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        view.addSubview(backButton)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backButton.widthAnchor.constraint(equalToConstant: 44),
+            backButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    private func setupLabel() {
+        label.text = "В игру играют командами из двух или более человек. Задача каждого игрока команды - объяснить слово, которое он видит на экране, следуя условиям, которые дополнительно указаны под загаданным словом. Чем больше слов отгадала команда, тем больше она заработает баллов. Выигрывает команда, набравшая больше всего баллов. На отгадывание слова дается одна минута. При нарушении правил объяснения слова, ход передается следующей команде."
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 34)
+        label.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 0)
+        label.sizeToFit()
+        scrollView.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40),
+            label.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
+            label.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32)
+        ])
+    }
+    
+    @objc private func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
-extension  RulesViewController {
-    private func setupViewsConstraints() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            stackView.leftAnchor.constraint(equalTo: contentView.leftAnchor)
-            
-        ])
-        
-        for view in stackView.arrangedSubviews {
-            NSLayoutConstraint.activate([
-                view.widthAnchor.constraint(equalToConstant: 300),
-                view.heightAnchor.constraint(equalToConstant: 100)
-            ])
-            
-            
-        }
-    }
-}
