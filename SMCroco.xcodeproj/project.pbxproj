@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370A6ABE29F086D50095803D /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6ABD29F086D50095803D /* Rules.swift */; };
 		37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E36429EDB51D00AD2B3E /* AppDelegate.swift */; };
 		37A4E36729EDB51D00AD2B3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E36629EDB51D00AD2B3E /* SceneDelegate.swift */; };
 		37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E36829EDB51D00AD2B3E /* MainViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370A6ABD29F086D50095803D /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		37A4E36129EDB51D00AD2B3E /* SMCroco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMCroco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A4E36429EDB51D00AD2B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A4E36629EDB51D00AD2B3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370A6ABF29F086DA0095803D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				370A6ABD29F086D50095803D /* Rules.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		37A4E35829EDB51D00AD2B3E = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +92,7 @@
 				37A4E37C29EE01BE00AD2B3E /* View */,
 				37A4E37B29EDC0B000AD2B3E /* Resources */,
 				37A4E36F29EDB51E00AD2B3E /* LaunchScreen.storyboard */,
+				370A6ABF29F086DA0095803D /* Model */,
 			);
 			path = SMCroco;
 			sourceTree = "<group>";
@@ -90,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				37A4E36429EDB51D00AD2B3E /* AppDelegate.swift */,
-				CEF8E15A29EDE21600C6122B /* CorrectViewController.swift */,
 				37A4E36629EDB51D00AD2B3E /* SceneDelegate.swift */,
 				37A4E37229EDB51E00AD2B3E /* Info.plist */,
 			);
@@ -196,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */,
+				370A6ABE29F086D50095803D /* Rules.swift in Sources */,
 				E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */,
 				37A4E37929EDC05100AD2B3E /* Theme.swift in Sources */,
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
