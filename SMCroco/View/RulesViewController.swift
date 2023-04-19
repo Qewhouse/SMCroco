@@ -73,7 +73,7 @@ final class RulesViewController: UIViewController {
     //MARK: - Methods
     
     @objc func buttonPressed(_ sender:UIButton) {
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func setUpViews() {
