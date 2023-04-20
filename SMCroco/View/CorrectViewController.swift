@@ -137,16 +137,23 @@ class CorrectViewController: UIViewController {
         button.backgroundColor = Theme.appColor
         button.tintColor = .white
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(teamViewControllerScreenPrint), for: .touchUpInside)
+        button.addTarget(self, action: #selector(changeTurnButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     //MARK: - LifeCycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.hidesBackButton = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         setConstraints()
+        totalScoreNumberLabel.text = "\(CounterModel.shared.counter)"
     }
     
     //MARK: - Private Methods
@@ -168,8 +175,14 @@ class CorrectViewController: UIViewController {
         
     }
     
-    @objc private func teamViewControllerScreenPrint() {
-        print("Change turn")
+    @objc private func changeTurnButtonPressed() {
+        let vc = TeamsViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func counterDidUpdate(_ value: Int) {
+        
+        totalScoreNumberLabel.text = "\(value)"
     }
     
     //MARK: - Constraints

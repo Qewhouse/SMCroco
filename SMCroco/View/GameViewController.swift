@@ -9,6 +9,10 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    //MARK: - Delegates
+    
+    var delegate: CounterDelegate?
+    
     //MARK: - Variables
     private var countdownTimer: Timer?
     private var remainingSeconds = 59
@@ -64,7 +68,7 @@ class GameViewController: UIViewController {
         correctButton.contentHorizontalAlignment = .fill
         correctButton.titleLabel?.textAlignment = .center
         correctButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        correctButton.addTarget(GameViewController.self, action: #selector(correctButtonPressed), for: .touchUpInside)
+        correctButton.addTarget(self, action: #selector(correctButtonPressed), for: .touchUpInside)
         
         let rulesBrokenButton = UIButton()
         rulesBrokenButton.setTitle("Нарушил правила", for: .normal)
@@ -74,7 +78,7 @@ class GameViewController: UIViewController {
         rulesBrokenButton.contentHorizontalAlignment = .fill
         rulesBrokenButton.titleLabel?.textAlignment = .center
         rulesBrokenButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        rulesBrokenButton.addTarget(GameViewController.self, action: #selector(rulesBrokenButtonPressed), for: .touchUpInside)
+        rulesBrokenButton.addTarget(self, action: #selector(rulesBrokenButtonPressed), for: .touchUpInside)
         
         let resetButton = UIButton()
         resetButton.setTitle("Сбросить", for: .normal)
@@ -84,7 +88,7 @@ class GameViewController: UIViewController {
         resetButton.contentHorizontalAlignment = .fill
         resetButton.titleLabel?.textAlignment = .center
         resetButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        resetButton.addTarget(GameViewController.self, action: #selector(resetButtonPressed), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(resetButtonPressed), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [correctButton, rulesBrokenButton, resetButton])
         stackView.axis = .vertical
@@ -123,17 +127,22 @@ class GameViewController: UIViewController {
     
     @objc private func correctButtonPressed() {
         
-        print("correctButtonPressed")
+        let vc = CorrectViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        CounterModel.shared.counter += 1
+        delegate?.counterDidUpdate(CounterModel.shared.counter)
     }
     
     @objc private func rulesBrokenButtonPressed() {
         
-        print("rulesBrokenButtonPressed")
+        let vc = WrongViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func resetButtonPressed() {
         
-        print("resetButtonPressed")
+        let vc = MainViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func startCountdownTimer() {
