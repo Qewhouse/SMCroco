@@ -24,6 +24,8 @@
 		E4E9814829EF28DE000EAB43 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814729EF28DE000EAB43 /* Teams.swift */; };
 		E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814B29EFCD50000EAB43 /* Category.swift */; };
 		E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */; };
+		E4E9815029F12863000EAB43 /* Word List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814F29F12863000EAB43 /* Word List.swift */; };
+		E4E9815229F12E2E000EAB43 /* Сonditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9815129F12E2E000EAB43 /* Сonditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		E4E9814729EF28DE000EAB43 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		E4E9814B29EFCD50000EAB43 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		E4E9814F29F12863000EAB43 /* Word List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Word List.swift"; sourceTree = "<group>"; };
+		E4E9815129F12E2E000EAB43 /* Сonditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Сonditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				37A4E36429EDB51D00AD2B3E /* AppDelegate.swift */,
-				CEF8E15A29EDE21600C6122B /* CorrectViewController.swift */,
 				37A4E36629EDB51D00AD2B3E /* SceneDelegate.swift */,
 				37A4E37229EDB51E00AD2B3E /* Info.plist */,
 			);
@@ -106,6 +109,8 @@
 				E4E9814729EF28DE000EAB43 /* Teams.swift */,
 				E4E9814B29EFCD50000EAB43 /* Category.swift */,
 				E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */,
+				E4E9814F29F12863000EAB43 /* Word List.swift */,
+				E4E9815129F12E2E000EAB43 /* Сonditions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			files = (
 				37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */,
 				E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */,
+				E4E9815029F12863000EAB43 /* Word List.swift in Sources */,
 				37A4E37929EDC05100AD2B3E /* Theme.swift in Sources */,
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
 				37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */,
@@ -208,6 +214,7 @@
 				37A4E38029EE01EA00AD2B3E /* RulesViewController.swift in Sources */,
 				E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */,
 				37A4E36729EDB51D00AD2B3E /* SceneDelegate.swift in Sources */,
+				E4E9815229F12E2E000EAB43 /* Сonditions.swift in Sources */,
 				37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */,
 				E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */,
 			);

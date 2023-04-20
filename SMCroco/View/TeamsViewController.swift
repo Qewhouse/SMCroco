@@ -10,7 +10,7 @@ import UIKit
 final class TeamsViewController: UIViewController {
     
     let teamsCollectionViewCell = TeamsCollectionViewCell()
-    let teams = Teams()
+    var teams = Teams()
     
     //MARK: -Elements
     
@@ -94,14 +94,15 @@ final class TeamsViewController: UIViewController {
 
 extension TeamsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return teams.teams.count
+        return teams.randomTeams.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamsCollectionViewCell.identifier, for: indexPath) as! TeamsCollectionViewCell;
-        cell.teamName.text = teams.teams[indexPath.row]
-        cell.teamIcon.image = UIImage(named: teams.teams[indexPath.row])
-        cell.clipsToBounds = true
+            cell.teamName.text = teams.randomTeams[indexPath.row]
+            cell.teamIcon.image = UIImage(named: cell.teamName.text!)
+            cell.clipsToBounds = true
+        
         return cell
     }
     
