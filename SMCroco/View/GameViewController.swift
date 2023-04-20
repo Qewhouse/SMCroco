@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
     private let rectangleCrocoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "RectangleCroco")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -88,7 +88,7 @@ class GameViewController: UIViewController {
         resetButton.contentHorizontalAlignment = .fill
         resetButton.titleLabel?.textAlignment = .center
         resetButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        resetButton.addTarget(self, action: #selector(resetButtonPressed), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(showResetAlert), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [correctButton, rulesBrokenButton, resetButton])
         stackView.axis = .vertical
@@ -102,6 +102,11 @@ class GameViewController: UIViewController {
     
     
     //MARK: - LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.hidesBackButton = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -139,10 +144,20 @@ class GameViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc private func resetButtonPressed() {
+    @objc func showResetAlert() {
         
-        let vc = MainViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let alertController = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить вашу игру и вернуться в главное меню?", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Да", style: .destructive) { (action:UIAlertAction!) in
+            let vc = MainViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action:UIAlertAction!) in}
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     private func startCountdownTimer() {
@@ -176,14 +191,9 @@ class GameViewController: UIViewController {
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             rectangleCrocoImageView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            rectangleCrocoImageView.centerYAnchor.constraint(equalTo:view.centerYAnchor),
-            rectangleCrocoImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            rectangleCrocoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 116),
-            rectangleCrocoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120),
-            rectangleCrocoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -642),
+            rectangleCrocoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             
             timerLabelView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            timerLabelView.centerYAnchor.constraint(equalTo:view.centerYAnchor),
             timerLabelView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             timerLabelView.bottomAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: -440),
             
@@ -193,9 +203,7 @@ class GameViewController: UIViewController {
             rulesLabelView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
             rulesLabelView.topAnchor.constraint(equalTo: wordLabelView.bottomAnchor, constant: -5),
             
-            buttonsStackView.centerXAnchor.constraint(equalTo: backgroundImageView.centerXAnchor),
-            buttonsStackView.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor),
-            buttonsStackView.topAnchor.constraint(equalTo: timerLabelView.centerYAnchor, constant: 300),
+            buttonsStackView.topAnchor.constraint(equalTo: timerLabelView.topAnchor, constant: 500),
             buttonsStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
