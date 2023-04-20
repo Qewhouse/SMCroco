@@ -20,6 +20,8 @@
 		37A4E38629EE022900AD2B3E /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38529EE022900AD2B3E /* CorrectViewController.swift */; };
 		37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38729EE023500AD2B3E /* WrongViewController.swift */; };
 		37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */; };
+		CEF8E15E29F1714100C6122B /* CounterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8E15D29F1714100C6122B /* CounterModel.swift */; };
+		CEF8E16129F1728300C6122B /* CounterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8E16029F1728300C6122B /* CounterDelegate.swift */; };
 		E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */; };
 		E4E9814829EF28DE000EAB43 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814729EF28DE000EAB43 /* Teams.swift */; };
 		E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814B29EFCD50000EAB43 /* Category.swift */; };
@@ -45,6 +47,8 @@
 		37A4E38529EE022900AD2B3E /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		37A4E38729EE023500AD2B3E /* WrongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsViewController.swift; sourceTree = "<group>"; };
+		CEF8E15D29F1714100C6122B /* CounterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterModel.swift; sourceTree = "<group>"; };
+		CEF8E16029F1728300C6122B /* CounterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterDelegate.swift; sourceTree = "<group>"; };
 		E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4E9814729EF28DE000EAB43 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		E4E9814B29EFCD50000EAB43 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		37A4E36329EDB51D00AD2B3E /* SMCroco */ = {
 			isa = PBXGroup;
 			children = (
+				CEF8E15F29F1726600C6122B /* Protocols */,
+				CEF8E15C29F1711B00C6122B /* Models */,
 				37A4E37A29EDC06300AD2B3E /* App */,
 				37A4E37C29EE01BE00AD2B3E /* View */,
 				37A4E37B29EDC0B000AD2B3E /* Resources */,
@@ -131,6 +137,22 @@
 				37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CEF8E15C29F1711B00C6122B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEF8E15D29F1714100C6122B /* CounterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEF8E15F29F1726600C6122B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CEF8E16029F1728300C6122B /* CounterDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +228,7 @@
 				37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */,
 				E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */,
 				E4E9815029F12863000EAB43 /* Word List.swift in Sources */,
+				CEF8E16129F1728300C6122B /* CounterDelegate.swift in Sources */,
 				37A4E37929EDC05100AD2B3E /* Theme.swift in Sources */,
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
 				37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */,
@@ -219,6 +242,7 @@
 				37A4E36729EDB51D00AD2B3E /* SceneDelegate.swift in Sources */,
 				E4E9815229F12E2E000EAB43 /* Сonditions.swift in Sources */,
 				37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */,
+				CEF8E15E29F1714100C6122B /* CounterModel.swift in Sources */,
 				E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */,
 				E4E9815529F15EC1000EAB43 /* GameResultCVCell.swift in Sources */,
 			);
