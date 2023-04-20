@@ -26,6 +26,7 @@
 		E4E9814E29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */; };
 		E4E9815029F12863000EAB43 /* Word List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814F29F12863000EAB43 /* Word List.swift */; };
 		E4E9815229F12E2E000EAB43 /* Сonditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9815129F12E2E000EAB43 /* Сonditions.swift */; };
+		E4E9815529F15EC1000EAB43 /* GameResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4E9814F29F12863000EAB43 /* Word List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Word List.swift"; sourceTree = "<group>"; };
 		E4E9815129F12E2E000EAB43 /* Сonditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Сonditions.swift"; sourceTree = "<group>"; };
+		E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */,
 				E4E9814F29F12863000EAB43 /* Word List.swift */,
 				E4E9815129F12E2E000EAB43 /* Сonditions.swift */,
+				E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				E4E9815229F12E2E000EAB43 /* Сonditions.swift in Sources */,
 				37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */,
 				E4E9814C29EFCD50000EAB43 /* Category.swift in Sources */,
+				E4E9815529F15EC1000EAB43 /* GameResultCVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,9 @@
 import UIKit
 
 class GameResultViewController: UIViewController {
+    var teams = Teams()
+    let gameResultCVCell = GameResultCVCell()
+    let teamsCollectionViewCell = TeamsCollectionViewCell()
     
     //MARK: -Elements
     
@@ -18,22 +21,22 @@ class GameResultViewController: UIViewController {
         return view
     }()
     
-//    private let layoutTeamsCollectionView: UICollectionViewFlowLayout = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = 28
-//        return layout
-//    }()
-//    
-//    private lazy var teamsCollectionView: UICollectionView = {
-//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layoutTeamsCollectionView)
-//        cv.backgroundColor = .clear
-//        cv.translatesAutoresizingMaskIntoConstraints = false
-//        cv.register(TeamsCollectionViewCell.self, forCellWithReuseIdentifier: TeamsCollectionViewCell.identifier)
-//        cv.dataSource = self
-//        cv.delegate = self
-//        return cv
-//    }()
+    private let layoutGameResultCV: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 28
+        return layout
+    }()
+    
+    private lazy var gameResultCV: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layoutGameResultCV)
+        cv.backgroundColor = .clear
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(GameResultCVCell.self, forCellWithReuseIdentifier: GameResultCVCell.identifier)
+        cv.dataSource = self
+        cv.delegate = self
+        return cv
+    }()
     
     lazy var startOverButton: UIButton = {
        let button = UIButton()
@@ -59,7 +62,7 @@ class GameResultViewController: UIViewController {
     
     func addElements() {
         view.addSubview(mainView)
-//        view.addSubview(categoryCV)
+        view.addSubview(gameResultCV)
         view.addSubview(startOverButton)
     }
     
@@ -70,11 +73,11 @@ class GameResultViewController: UIViewController {
              mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
              mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
              
-//             categoryCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 96),
-//             categoryCV.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 14),
-//             categoryCV.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-//             categoryCV.bottomAnchor.constraint(equalTo: startGameButton.topAnchor, constant: -10),
-//             
+             gameResultCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 96),
+             gameResultCV.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 14),
+             gameResultCV.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+             gameResultCV.bottomAnchor.constraint(equalTo: startOverButton.topAnchor, constant: -10),
+             
             startOverButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             startOverButton.heightAnchor.constraint(equalToConstant: 63),
             startOverButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 14),
@@ -88,4 +91,28 @@ class GameResultViewController: UIViewController {
         let vc = TeamsViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+extension GameResultViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    //MARK: -UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return teams.randomTeams.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameResultCVCell.identifier, for: indexPath) as! GameResultCVCell;
+//        cell.teamName.text = teamsCollectionViewCell.teamName.text
+//        cell.teamIcon.image = teamsCollectionViewCell.teamIcon.image
+        cell.teamName.text = teams.randomTeams[indexPath.row]
+        cell.teamIcon.image = UIImage(named: cell.teamName.text!)
+            cell.clipsToBounds = true
+        
+        return cell
+    }
+    
+    //MARK: -UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.frame.width, height: (collectionView.frame.height / 8))
+    }
+    
 }
