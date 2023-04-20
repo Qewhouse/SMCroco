@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+final class GameViewController: UIViewController {
     
     //MARK: - Delegates
     
@@ -112,6 +112,7 @@ class GameViewController: UIViewController {
         setLayout()
         setConstraints()
         startCountdownTimer()
+        showRandomTask()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -179,6 +180,20 @@ class GameViewController: UIViewController {
     private func stopCountdownTimer() {
         countdownTimer?.invalidate()
         countdownTimer = nil
+    }
+    
+    private func showRandomTask() {
+        let randomCategoryIndex = Int.random(in: 0..<WordList.categories.count)
+        let categoryArray = WordList.categories[randomCategoryIndex]
+        let randomWordIndex = Int.random(in: 0..<categoryArray.count)
+        let randomWord = categoryArray[randomWordIndex]
+        
+        wordLabelView.text = randomWord
+        
+        let randomConditionIndex = Int.random(in: 0..<Conditions.conditions.count)
+        let randomCondition = Conditions.conditions[randomConditionIndex]
+
+        rulesLabelView.text = randomCondition
     }
     
     //MARK: - Constraints
