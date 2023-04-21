@@ -20,6 +20,7 @@
 		37A4E38629EE022900AD2B3E /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38529EE022900AD2B3E /* CorrectViewController.swift */; };
 		37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38729EE023500AD2B3E /* WrongViewController.swift */; };
 		37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */; };
+		ECEA48B429F19D53006393F3 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA48B329F19D53006393F3 /* Rules.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		37A4E38529EE022900AD2B3E /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		37A4E38729EE023500AD2B3E /* WrongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsViewController.swift; sourceTree = "<group>"; };
+		ECEA48B329F19D53006393F3 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +75,6 @@
 				37A4E37A29EDC06300AD2B3E /* App */,
 				37A4E37C29EE01BE00AD2B3E /* View */,
 				37A4E37B29EDC0B000AD2B3E /* Resources */,
-				37A4E36F29EDB51E00AD2B3E /* LaunchScreen.storyboard */,
 			);
 			path = SMCroco;
 			sourceTree = "<group>";
@@ -91,8 +92,10 @@
 		37A4E37B29EDC0B000AD2B3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				37A4E36D29EDB51E00AD2B3E /* Assets.xcassets */,
+				37A4E36F29EDB51E00AD2B3E /* LaunchScreen.storyboard */,
 				37A4E37829EDC05100AD2B3E /* Theme.swift */,
+				37A4E36D29EDB51E00AD2B3E /* Assets.xcassets */,
+				ECEA48B229F19D2D006393F3 /* Model */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -110,6 +113,14 @@
 				37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		ECEA48B229F19D2D006393F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECEA48B329F19D53006393F3 /* Rules.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +198,7 @@
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
 				37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */,
 				37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */,
+				ECEA48B429F19D53006393F3 /* Rules.swift in Sources */,
 				37A4E38429EE021500AD2B3E /* GameViewController.swift in Sources */,
 				37A4E37E29EE01DE00AD2B3E /* TeamsViewController.swift in Sources */,
 				37A4E38629EE022900AD2B3E /* CorrectViewController.swift in Sources */,
