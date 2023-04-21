@@ -8,6 +8,7 @@
 import UIKit
 
 final class CategoryViewController: UIViewController {
+<<<<<<< HEAD
     
     let categoryCVCell = CategoryCollectionViewCell()
     let category = Category()
@@ -54,10 +55,13 @@ final class CategoryViewController: UIViewController {
     
     //MARK: - LifeCycle
     
+=======
+>>>>>>> RulesViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Категории"
         navigationItem.backBarButtonItem?.isEnabled = true
+<<<<<<< HEAD
         addElements()
         setConstraints()
     }
@@ -117,5 +121,9 @@ extension CategoryViewController: UICollectionViewDataSource, UICollectionViewDe
     //MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: (collectionView.frame.height / 6))
+=======
+        
+        
+>>>>>>> RulesViewController
     }
 }
