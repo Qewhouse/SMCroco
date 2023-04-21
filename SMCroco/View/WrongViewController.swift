@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WrongViewController: UIViewController {
+final class WrongViewController: UIViewController {
     
     //MARK: - Elements
     private let backgroundImageView: UIImageView = {
