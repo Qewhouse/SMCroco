@@ -90,8 +90,6 @@ extension MainViewController {
             
             crocoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 172),
             crocoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            crocoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-//            crocoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             crocoImageView.heightAnchor.constraint(equalToConstant: 322),
             crocoImageView.widthAnchor.constraint(equalToConstant: 268),
             
@@ -106,31 +104,5 @@ extension MainViewController {
             rulesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
         ])
-    }
-}
-
-import SwiftUI
-struct ListProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone 12 Pro Max")
-            .previewDisplayName("iPhone 12 Pro Max")
-        
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone SE (3rd generation)")
-            .previewDisplayName("iPhone SE (3rd generation)")
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        let listVC = MainViewController()
-        func makeUIViewController(context:
-                                  UIViewControllerRepresentableContext<ListProvider.ContainterView>) -> MainViewController {
-            return listVC
-        }
-        
-        func updateUIViewController(_ uiViewController:
-                                    ListProvider.ContainterView.UIViewControllerType, context:
-                                    UIViewControllerRepresentableContext<ListProvider.ContainterView>) {
-        }
     }
 }
