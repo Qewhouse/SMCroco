@@ -21,6 +21,7 @@
 		37A4E38629EE022900AD2B3E /* CorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38529EE022900AD2B3E /* CorrectViewController.swift */; };
 		37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38729EE023500AD2B3E /* WrongViewController.swift */; };
 		37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */; };
+<<<<<<< HEAD
 		CEF8E15E29F1714100C6122B /* CounterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8E15D29F1714100C6122B /* CounterModel.swift */; };
 		CEF8E16129F1728300C6122B /* CounterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8E16029F1728300C6122B /* CounterDelegate.swift */; };
 		E4E9814629EF1C41000EAB43 /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */; };
@@ -30,6 +31,9 @@
 		E4E9815029F12863000EAB43 /* Word List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9814F29F12863000EAB43 /* Word List.swift */; };
 		E4E9815229F12E2E000EAB43 /* Сonditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9815129F12E2E000EAB43 /* Сonditions.swift */; };
 		E4E9815529F15EC1000EAB43 /* GameResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */; };
+=======
+		ECEA48B429F19D53006393F3 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA48B329F19D53006393F3 /* Rules.swift */; };
+>>>>>>> RulesViewController
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,7 @@
 		37A4E38529EE022900AD2B3E /* CorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectViewController.swift; sourceTree = "<group>"; };
 		37A4E38729EE023500AD2B3E /* WrongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongViewController.swift; sourceTree = "<group>"; };
 		37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		CEF8E15D29F1714100C6122B /* CounterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterModel.swift; sourceTree = "<group>"; };
 		CEF8E16029F1728300C6122B /* CounterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterDelegate.swift; sourceTree = "<group>"; };
 		E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +63,9 @@
 		E4E9814F29F12863000EAB43 /* Word List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Word List.swift"; sourceTree = "<group>"; };
 		E4E9815129F12E2E000EAB43 /* Сonditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Сonditions.swift"; sourceTree = "<group>"; };
 		E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultCVCell.swift; sourceTree = "<group>"; };
+=======
+		ECEA48B329F19D53006393F3 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+>>>>>>> RulesViewController
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +111,11 @@
 				37A4E37A29EDC06300AD2B3E /* App */,
 				37A4E37C29EE01BE00AD2B3E /* View */,
 				37A4E37B29EDC0B000AD2B3E /* Resources */,
+<<<<<<< HEAD
 				37A4E36F29EDB51E00AD2B3E /* LaunchScreen.storyboard */,
 				370A6ABF29F086DA0095803D /* Model */,
+=======
+>>>>>>> origin/RulesViewController
 			);
 			path = SMCroco;
 			sourceTree = "<group>";
@@ -122,8 +133,9 @@
 		37A4E37B29EDC0B000AD2B3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				37A4E36D29EDB51E00AD2B3E /* Assets.xcassets */,
+				37A4E36F29EDB51E00AD2B3E /* LaunchScreen.storyboard */,
 				37A4E37829EDC05100AD2B3E /* Theme.swift */,
+<<<<<<< HEAD
 				E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */,
 				E4E9814729EF28DE000EAB43 /* Teams.swift */,
 				E4E9814B29EFCD50000EAB43 /* Category.swift */,
@@ -131,6 +143,10 @@
 				E4E9814F29F12863000EAB43 /* Word List.swift */,
 				E4E9815129F12E2E000EAB43 /* Сonditions.swift */,
 				E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */,
+=======
+				37A4E36D29EDB51E00AD2B3E /* Assets.xcassets */,
+				ECEA48B229F19D2D006393F3 /* Model */,
+>>>>>>> RulesViewController
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -150,6 +166,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		CEF8E15C29F1711B00C6122B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +181,14 @@
 				CEF8E16029F1728300C6122B /* CounterDelegate.swift */,
 			);
 			path = Protocols;
+=======
+		ECEA48B229F19D2D006393F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECEA48B329F19D53006393F3 /* Rules.swift */,
+			);
+			path = Model;
+>>>>>>> RulesViewController
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +270,7 @@
 				37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */,
 				37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */,
 				37A4E38829EE023500AD2B3E /* WrongViewController.swift in Sources */,
+				ECEA48B429F19D53006393F3 /* Rules.swift in Sources */,
 				37A4E38429EE021500AD2B3E /* GameViewController.swift in Sources */,
 				37A4E37E29EE01DE00AD2B3E /* TeamsViewController.swift in Sources */,
 				E4E9814829EF28DE000EAB43 /* Teams.swift in Sources */,
