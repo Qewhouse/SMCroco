@@ -6,222 +6,251 @@
 //
 
 import UIKit
+import AVFoundation
 
-final class GameViewController: UIViewController {
+class GameViewController: UIViewController {
     
-    //MARK: - Delegates
+    var timer = Timer()
+    var counter = 60
+    var player: AVAudioPlayer!
+    var word = ""
+    var explanationType = ""
+
+    var audioSession = AVAudioSession.sharedInstance()
     
-    var delegate: CounterDelegate?
+    private lazy var backgroundView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "BackgroundWithoutGrass"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }()
     
-    //MARK: - Variables
-    private var countdownTimer: Timer?
-    private var remainingSeconds = 59
-    
-    //MARK: - Elements
-    private let backgroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "BlankBackground")
-        imageView.contentMode = .scaleAspectFill
+    private lazy var crocodileImage: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "RectangleCroco"))
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let rectangleCrocoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "RectangleCroco")
-        imageView.contentMode = .scaleToFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private lazy var timerLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 48, weight: .bold)
+        label.text = "1:00"
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(self.updateTimer), userInfo:nil, repeats: true)
+        return label
     }()
     
-    private let timerLabelView: UILabel = {
-        let labelView = UILabel()
-        labelView.text = "00:59"
-        labelView.font = labelView.font.withSize(48)
-        labelView.translatesAutoresizingMaskIntoConstraints = false
-        return labelView
+    private lazy var whichWordLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 48, weight: .bold)
+        label.text = word
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private let wordLabelView: UILabel = {
-        let labelView = UILabel()
-        labelView.text = "Картошка"
-        labelView.font = labelView.font.withSize(48)
-        labelView.translatesAutoresizingMaskIntoConstraints = false
-        return labelView
+    private lazy var howToExplainLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.text = howToExplainArray.randomElement()
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    private let rulesLabelView: UILabel = {
-        let labelView = UILabel()
-        labelView.text = "объясни с помощью жестов"
-        labelView.font = labelView.font.withSize(20)
-        labelView.translatesAutoresizingMaskIntoConstraints = false
-        return labelView
-    }()
-    
-    private let buttonsStackView: UIStackView = {
-        
-        let correctButton = UIButton()
-        correctButton.setTitle("Правильно", for: .normal)
-        correctButton.backgroundColor = Theme.appColor
-        correctButton.tintColor = .white
-        correctButton.layer.cornerRadius = 10
-        correctButton.contentHorizontalAlignment = .fill
-        correctButton.titleLabel?.textAlignment = .center
-        correctButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        correctButton.addTarget(self, action: #selector(correctButtonPressed), for: .touchUpInside)
-        
-        let rulesBrokenButton = UIButton()
-        rulesBrokenButton.setTitle("Нарушил правила", for: .normal)
-        rulesBrokenButton.backgroundColor = Theme.wrongColor
-        rulesBrokenButton.tintColor = .white
-        rulesBrokenButton.layer.cornerRadius = 10
-        rulesBrokenButton.contentHorizontalAlignment = .fill
-        rulesBrokenButton.titleLabel?.textAlignment = .center
-        rulesBrokenButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        rulesBrokenButton.addTarget(self, action: #selector(rulesBrokenButtonPressed), for: .touchUpInside)
-        
-        let resetButton = UIButton()
-        resetButton.setTitle("Сбросить", for: .normal)
-        resetButton.backgroundColor = Theme.neutralColor
-        resetButton.tintColor = .white
-        resetButton.layer.cornerRadius = 10
-        resetButton.contentHorizontalAlignment = .fill
-        resetButton.titleLabel?.textAlignment = .center
-        resetButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        resetButton.addTarget(self, action: #selector(showResetAlert), for: .touchUpInside)
-        
-        let stackView = UIStackView(arrangedSubviews: [correctButton, rulesBrokenButton, resetButton])
+    private lazy var buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        stackView.spacing = 15
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
+    private lazy var rightButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(red: 0.455, green: 0.655, blue: 0.188, alpha: 1)
+        button.setTitle("Правильно", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        switch button.state {
+        case .normal: button.alpha = 1
+        case .selected, .highlighted, .disabled: button.alpha = 0.8
+        default:
+            button.alpha = 1
+        }
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(tapRightButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled  = true
+        return button
+    }()
     
+    private lazy var wrongButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(red: 0.902, green: 0.275, blue: 0.275, alpha: 1)
+        button.setTitle("Нарушил правила", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        switch button.state {
+        case .normal: button.alpha = 1
+        case .selected, .highlighted, .disabled: button.alpha = 0.8
+        default:
+            button.alpha = 1
+        }
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(tapWrongButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled  = true
+        return button
+    }()
     
-    //MARK: - LifeCycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.hidesBackButton = true
-    }
+    private lazy var resetButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(red: 0.551, green: 0.568, blue: 0.587, alpha: 1)
+        button.setTitle("Сбросить", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        switch button.state {
+        case .normal: button.alpha = 1
+        case .selected, .highlighted, .disabled: button.alpha = 0.8
+        default:
+            button.alpha = 1
+        }
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(tapResetButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled  = true
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLayout()
-        setConstraints()
-        startCountdownTimer()
-        showRandomTask()
+        subviews()
+        setupConstraints()
+        navigationItem.hidesBackButton = true
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        try? AVAudioSession.sharedInstance().setActive(true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopCountdownTimer()
+    private func subviews() {
+        view.addSubview(backgroundView)
+        backgroundView.addSubview(crocodileImage)
+        backgroundView.addSubview(timerLabel)
+        backgroundView.addSubview(whichWordLabel)
+        backgroundView.addSubview(howToExplainLabel)
+        backgroundView.addSubview(buttonsStackView)
+        buttonsStackView.addArrangedSubview(rightButton)
+        buttonsStackView.addArrangedSubview(wrongButton)
+        buttonsStackView.addArrangedSubview(resetButton)
     }
     
-    //MARK: - Private Methods
-    private func setLayout() {
-        view.addSubview(backgroundImageView)
-        view.addSubview(rectangleCrocoImageView)
-        view.addSubview(timerLabelView)
-        view.addSubview(wordLabelView)
-        view.addSubview(rulesLabelView)
-        view.addSubview(buttonsStackView)
+    func setupConstraints() {
         
-    }
-    
-    @objc private func correctButtonPressed() {
-        
-        let vc = CorrectViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        CounterModel.shared.counter += 1
-        delegate?.counterDidUpdate(CounterModel.shared.counter)
-    }
-    
-    @objc private func rulesBrokenButtonPressed() {
-        
-        let vc = WrongViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc func showResetAlert() {
-        
-        let alertController = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить вашу игру и вернуться в главное меню?", preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Да", style: .destructive) { (action:UIAlertAction!) in
-            let vc = MainViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        alertController.addAction(okAction)
-        
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action:UIAlertAction!) in}
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    private func startCountdownTimer() {
-        countdownTimer?.invalidate()
-        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in guard let self = self else { return }
-            
-            self.remainingSeconds -= 1
-            
-            let minutes = self.remainingSeconds / 60
-            let seconds = self.remainingSeconds % 60
-            self.timerLabelView.text = String(format: "%02d:%02d", minutes, seconds)
-            
-            if self.remainingSeconds == 0 {
-                self.stopCountdownTimer()
-            }
-        }
-    }
-    
-    private func stopCountdownTimer() {
-        countdownTimer?.invalidate()
-        countdownTimer = nil
-    }
-    
-    private func showRandomTask() {
-        let randomCategoryIndex = Int.random(in: 0..<WordList.categories.count)
-        let categoryArray = WordList.categories[randomCategoryIndex]
-        let randomWordIndex = Int.random(in: 0..<categoryArray.count)
-        let randomWord = categoryArray[randomWordIndex]
-        
-        wordLabelView.text = randomWord
-        
-        let randomConditionIndex = Int.random(in: 0..<Conditions.conditions.count)
-        let randomCondition = Conditions.conditions[randomConditionIndex]
-
-        rulesLabelView.text = randomCondition
-    }
-    
-    //MARK: - Constraints
-    private func setConstraints() {
         NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            crocodileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            crocodileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            rectangleCrocoImageView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            rectangleCrocoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            timerLabel.topAnchor.constraint(equalTo: crocodileImage.bottomAnchor, constant: 57),
+            timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            timerLabel.heightAnchor.constraint(equalToConstant: 37),
             
-            timerLabelView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            timerLabelView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            timerLabelView.bottomAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: -440),
+            whichWordLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 90),
+            whichWordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            whichWordLabel.heightAnchor.constraint(equalToConstant: 48),
             
-            wordLabelView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            wordLabelView.topAnchor.constraint(equalTo: timerLabelView.bottomAnchor, constant: -50),
+            howToExplainLabel.topAnchor.constraint(equalTo: whichWordLabel.bottomAnchor, constant: 10),
+            howToExplainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            howToExplainLabel.heightAnchor.constraint(equalToConstant: 48),
             
-            rulesLabelView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            rulesLabelView.topAnchor.constraint(equalTo: wordLabelView.bottomAnchor, constant: -5),
-            
-            buttonsStackView.topAnchor.constraint(equalTo: timerLabelView.topAnchor, constant: 500),
-            buttonsStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            buttonsStackView.topAnchor.constraint(equalTo: howToExplainLabel.bottomAnchor, constant: 100),
+            buttonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            buttonsStackView.heightAnchor.constraint(equalToConstant: 200),
         ])
+    }
+    
+    func playSound(soundName: String) {
+        guard let url = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    @objc func updateTimer() {
+        switch counter {
+        case 1...10:
+            counter -= 1
+            timerLabel.text = "0:0\(counter.description)"
+        case 11:
+            playSound(soundName: "10sec")
+            counter -= 1
+            timerLabel.text = "0:\(counter.description)"
+        case 12...60:
+            counter -= 1
+            timerLabel.text = "0:\(counter.description)"
+        case 0:
+            timerLabel.text = "ВРЕМЯ ВЫШЛО"
+            timerLabel.textColor = .red
+        default:
+            timer.invalidate()
+        }
+    }
+    
+    @objc func tapRightButton() {
+        let dm = DataManager.shared
+        if dm.currentTeam > dm.numberOfTeams {
+            dm.currentTeam += 1
+        }
+        dm.totalRounds += 1
+        teams[dm.currentTeam].points += 1
+        
+        timer.invalidate()
+        let VC = ScoreTeamViewController()
+        playSound(soundName: "pravilnyiy-otvet")
+        navigationController?.pushViewController(VC, animated: true)
+    }
+
+    
+    @objc func tapWrongButton() {
+        let dm = DataManager.shared
+        if dm.currentTeam > dm.numberOfTeams {
+            dm.currentTeam += 1
+        }
+        dm.totalRounds += 1
+        let VC = ScoreTeamViewController()
+        VC.congratsLabel.text = "УВЫ И АХ!"
+        VC.youGotLabel.text = "Вы не отгадали слово и не получаете очков!"
+        VC.resultLabel.text = "0"
+        VC.resultOfRoundView.backgroundColor = UIColor(red: 0.902, green: 0.275, blue: 0.275, alpha: 1)
+        timer.invalidate()
+        playSound(soundName: "game-lost")
+        navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    @objc func tapResetButton() {
+        let ac = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить вашу игру и вернуться в главное меню?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Отмена", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
+        ac.addAction(UIAlertAction(title: "Да", style: .destructive, handler: { (action: UIAlertAction!) in
+            self.timer.invalidate()
+            let VC = MainViewController()
+            self.navigationController?.pushViewController(VC, animated: true)
+            for i in 0..<teams.count {
+                teams[i].points = 0
+            }
+        }))
     }
 }

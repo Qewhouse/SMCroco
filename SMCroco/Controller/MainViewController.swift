@@ -45,7 +45,22 @@ final class MainViewController: UIViewController {
         button.backgroundColor = Theme.appColor
         button.tintColor = .white
         button.layer.cornerRadius = 10
+        button.layer.borderWidth = 1
+        button.layer.borderColor = Theme.accentColor.cgColor
         button.addTarget(self, action: #selector(goToRules), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    lazy var resultButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("Результаты", for: .normal)
+        button.backgroundColor = Theme.orangeColor
+        button.tintColor = .white
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 1
+        button.layer.borderColor = Theme.accentColor.cgColor
+        button.addTarget(self, action: #selector(goToResults), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -63,6 +78,7 @@ final class MainViewController: UIViewController {
         view.addSubview(crocoImageView)
         view.addSubview(startButton)
         view.addSubview(rulesButton)
+        view.addSubview(resultButton)
     }
     
     @objc private func goToTeams() {
@@ -74,6 +90,12 @@ final class MainViewController: UIViewController {
     @objc private func goToRules() {
         print("Rules")
         let vc = RulesViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func goToResults() {
+        print("Rules")
+        let vc = BestViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -98,10 +120,15 @@ extension MainViewController {
             startButton.topAnchor.constraint(equalTo: crocoImageView.bottomAnchor, constant: 100),
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            rulesButton.heightAnchor.constraint(equalToConstant: 63),
-            rulesButton.widthAnchor.constraint(equalToConstant: 211),
-            rulesButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 39),
+            rulesButton.heightAnchor.constraint(equalToConstant: 73),
+            rulesButton.widthAnchor.constraint(equalToConstant: 240),
+            rulesButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 20),
             rulesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            resultButton.heightAnchor.constraint(equalToConstant: 73),
+            resultButton.widthAnchor.constraint(equalToConstant: 240),
+            resultButton.topAnchor.constraint(equalTo: rulesButton.bottomAnchor, constant: 20),
+            resultButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
         ])
     }

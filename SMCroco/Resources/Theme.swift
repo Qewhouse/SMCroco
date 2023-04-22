@@ -13,6 +13,7 @@ enum Theme {
     static let accentColor: UIColor = UIColor(named: "AccentColor")!
     static let wrongColor: UIColor = UIColor(named: "WrongRectangleColor")!
     static let neutralColor: UIColor = UIColor(named: "NeutralColor")!
+    static let orangeColor: UIColor = UIColor(named: "orangeColor")!
     
 }
 
