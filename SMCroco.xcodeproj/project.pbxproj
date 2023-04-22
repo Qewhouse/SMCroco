@@ -74,9 +74,29 @@
 		370A6ABF29F086DA0095803D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E4E9814729EF28DE000EAB43 /* Teams.swift */,
+				E4E9814B29EFCD50000EAB43 /* Category.swift */,
+				E4E9814F29F12863000EAB43 /* Word List.swift */,
+				E4E9815129F12E2E000EAB43 /* Сonditions.swift */,
+				CEF8E15D29F1714100C6122B /* CounterModel.swift */,
 				370A6ABD29F086D50095803D /* Rules.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		370A6AC029F3F20B0095803D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				37A4E36829EDB51D00AD2B3E /* MainViewController.swift */,
+				37A4E37D29EE01DE00AD2B3E /* TeamsViewController.swift */,
+				37A4E37F29EE01EA00AD2B3E /* RulesViewController.swift */,
+				37A4E38129EE020000AD2B3E /* CategoryViewController.swift */,
+				37A4E38329EE021500AD2B3E /* GameViewController.swift */,
+				37A4E38529EE022900AD2B3E /* CorrectViewController.swift */,
+				37A4E38729EE023500AD2B3E /* WrongViewController.swift */,
+				37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		37A4E35829EDB51D00AD2B3E = {
@@ -98,13 +118,13 @@
 		37A4E36329EDB51D00AD2B3E /* SMCroco */ = {
 			isa = PBXGroup;
 			children = (
-				CEF8E15F29F1726600C6122B /* Protocols */,
-				CEF8E15C29F1711B00C6122B /* Models */,
 				37A4E37A29EDC06300AD2B3E /* App */,
+				370A6ABF29F086DA0095803D /* Model */,
 				37A4E37C29EE01BE00AD2B3E /* View */,
+				370A6AC029F3F20B0095803D /* Controller */,
+				CEF8E15F29F1726600C6122B /* Protocols */,
 				37A4E37B29EDC0B000AD2B3E /* Resources */,
 				37A4E36F29EDB51E00AD2B3E /* LaunchScreen.storyboard */,
-				370A6ABF29F086DA0095803D /* Model */,
 			);
 			path = SMCroco;
 			sourceTree = "<group>";
@@ -124,13 +144,6 @@
 			children = (
 				37A4E36D29EDB51E00AD2B3E /* Assets.xcassets */,
 				37A4E37829EDC05100AD2B3E /* Theme.swift */,
-				E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */,
-				E4E9814729EF28DE000EAB43 /* Teams.swift */,
-				E4E9814B29EFCD50000EAB43 /* Category.swift */,
-				E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */,
-				E4E9814F29F12863000EAB43 /* Word List.swift */,
-				E4E9815129F12E2E000EAB43 /* Сonditions.swift */,
-				E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -138,24 +151,11 @@
 		37A4E37C29EE01BE00AD2B3E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				37A4E36829EDB51D00AD2B3E /* MainViewController.swift */,
-				37A4E37D29EE01DE00AD2B3E /* TeamsViewController.swift */,
-				37A4E37F29EE01EA00AD2B3E /* RulesViewController.swift */,
-				37A4E38129EE020000AD2B3E /* CategoryViewController.swift */,
-				37A4E38329EE021500AD2B3E /* GameViewController.swift */,
-				37A4E38529EE022900AD2B3E /* CorrectViewController.swift */,
-				37A4E38729EE023500AD2B3E /* WrongViewController.swift */,
-				37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */,
+				E4E9814529EF1C41000EAB43 /* TeamsCollectionViewCell.swift */,
+				E4E9814D29EFD2BA000EAB43 /* CategoryCollectionViewCell.swift */,
+				E4E9815429F15EC1000EAB43 /* GameResultCVCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		CEF8E15C29F1711B00C6122B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CEF8E15D29F1714100C6122B /* CounterModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		CEF8E15F29F1726600C6122B /* Protocols */ = {
