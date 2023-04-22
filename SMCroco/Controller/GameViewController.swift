@@ -126,7 +126,7 @@ class GameViewController: UIViewController {
     }()
     
     
-    //MARK: - LigfeCycle
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
