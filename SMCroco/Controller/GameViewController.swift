@@ -10,15 +10,16 @@ import AVFoundation
 
 class GameViewController: UIViewController {
     
+    //MARK: - Instances
     var timer = Timer()
     var counter = 60
     var player: AVAudioPlayer!
     var word = ""
     var explanationType = ""
-
     var audioSession = AVAudioSession.sharedInstance()
     
-    private lazy var backgroundView: UIImageView = {
+    //MARK: - Elements
+    private let backgroundImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "BackgroundWithoutGrass"))
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +27,7 @@ class GameViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var crocodileImage: UIImageView = {
+    private let crocoImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "RectangleCroco"))
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,12 +40,11 @@ class GameViewController: UIViewController {
         label.text = "1:00"
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         timer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(self.updateTimer), userInfo:nil, repeats: true)
         return label
     }()
     
-    private lazy var whichWordLabel: UILabel = {
+    private lazy var wordLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 48, weight: .bold)
         label.text = word
@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
         return label
     }()
     
-    private lazy var howToExplainLabel: UILabel = {
+    private let ruleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label.text = howToExplainArray.randomElement()
@@ -62,18 +62,18 @@ class GameViewController: UIViewController {
         return label
     }()
     
-    private lazy var buttonsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+    private lazy var buttonsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
     private lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.455, green: 0.655, blue: 0.188, alpha: 1)
+        button.backgroundColor = Theme.appColor
         button.setTitle("Правильно", for: .normal)
         button.setTitleColor(.white, for: .normal)
         switch button.state {
@@ -83,7 +83,7 @@ class GameViewController: UIViewController {
             button.alpha = 1
         }
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(tapRightButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(correctButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled  = true
         return button
@@ -91,7 +91,7 @@ class GameViewController: UIViewController {
     
     private lazy var wrongButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.902, green: 0.275, blue: 0.275, alpha: 1)
+        button.backgroundColor = Theme.red
         button.setTitle("Нарушил правила", for: .normal)
         button.setTitleColor(.white, for: .normal)
         switch button.state {
@@ -101,7 +101,7 @@ class GameViewController: UIViewController {
             button.alpha = 1
         }
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(tapWrongButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(wrongButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled  = true
         return button
@@ -109,7 +109,7 @@ class GameViewController: UIViewController {
     
     private lazy var resetButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.551, green: 0.568, blue: 0.587, alpha: 1)
+        button.backgroundColor = Theme.neutralColor
         button.setTitle("Сбросить", for: .normal)
         button.setTitleColor(.white, for: .normal)
         switch button.state {
@@ -119,65 +119,37 @@ class GameViewController: UIViewController {
             button.alpha = 1
         }
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(tapResetButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled  = true
         return button
     }()
     
+    
+    //MARK: - LigfeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        subviews()
+        setLayout()
         setupConstraints()
         navigationItem.hidesBackButton = true
         try? AVAudioSession.sharedInstance().setCategory(.playback)
         try? AVAudioSession.sharedInstance().setActive(true)
     }
-    
-    private func subviews() {
-        view.addSubview(backgroundView)
-        backgroundView.addSubview(crocodileImage)
-        backgroundView.addSubview(timerLabel)
-        backgroundView.addSubview(whichWordLabel)
-        backgroundView.addSubview(howToExplainLabel)
-        backgroundView.addSubview(buttonsStackView)
-        buttonsStackView.addArrangedSubview(rightButton)
-        buttonsStackView.addArrangedSubview(wrongButton)
-        buttonsStackView.addArrangedSubview(resetButton)
+  
+    //MARK: - Methods
+    private func setLayout() {
+        view.addSubview(backgroundImage)
+        backgroundImage.addSubview(crocoImage)
+        backgroundImage.addSubview(timerLabel)
+        backgroundImage.addSubview(wordLabel)
+        backgroundImage.addSubview(ruleLabel)
+        backgroundImage.addSubview(buttonsStack)
+        buttonsStack.addArrangedSubview(rightButton)
+        buttonsStack.addArrangedSubview(wrongButton)
+        buttonsStack.addArrangedSubview(resetButton)
     }
     
-    func setupConstraints() {
-        
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            crocodileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            crocodileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            timerLabel.topAnchor.constraint(equalTo: crocodileImage.bottomAnchor, constant: 57),
-            timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timerLabel.heightAnchor.constraint(equalToConstant: 37),
-            
-            whichWordLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 90),
-            whichWordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            whichWordLabel.heightAnchor.constraint(equalToConstant: 48),
-            
-            howToExplainLabel.topAnchor.constraint(equalTo: whichWordLabel.bottomAnchor, constant: 10),
-            howToExplainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            howToExplainLabel.heightAnchor.constraint(equalToConstant: 48),
-            
-            buttonsStackView.topAnchor.constraint(equalTo: howToExplainLabel.bottomAnchor, constant: 100),
-            buttonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            buttonsStackView.heightAnchor.constraint(equalToConstant: 200),
-        ])
-    }
-    
-    func playSound(soundName: String) {
+    func playMusicFile(soundName: String) {
         guard let url = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -195,53 +167,52 @@ class GameViewController: UIViewController {
             counter -= 1
             timerLabel.text = "0:0\(counter.description)"
         case 11:
-            playSound(soundName: "10sec")
+            playMusicFile(soundName: "10sec")
             counter -= 1
             timerLabel.text = "0:\(counter.description)"
         case 12...60:
             counter -= 1
             timerLabel.text = "0:\(counter.description)"
         case 0:
-            timerLabel.text = "ВРЕМЯ ВЫШЛО"
+            timerLabel.text = "Время вышло"
             timerLabel.textColor = .red
         default:
             timer.invalidate()
         }
     }
     
-    @objc func tapRightButton() {
-        let dm = DataManager.shared
-        if dm.currentTeam > dm.numberOfTeams {
-            dm.currentTeam += 1
+    @objc func correctButtonTapped() {
+        let dataManager = DataManager.shared
+        if dataManager.currentTeam > dataManager.numberOfTeams {
+            dataManager.currentTeam += 1
         }
-        dm.totalRounds += 1
-        teams[dm.currentTeam].points += 1
+        dataManager.totalRounds += 1
+        teams[dataManager.currentTeam].points += 1
         
         timer.invalidate()
-        let VC = ScoreTeamViewController()
-        playSound(soundName: "pravilnyiy-otvet")
+        let VC = RoundResultsViewController()
+        playMusicFile(soundName: "pravilnyiy-otvet")
         navigationController?.pushViewController(VC, animated: true)
     }
-
     
-    @objc func tapWrongButton() {
-        let dm = DataManager.shared
-        if dm.currentTeam > dm.numberOfTeams {
-            dm.currentTeam += 1
+    @objc func wrongButtonTapped() {
+        let dataManager = DataManager.shared
+        if dataManager.currentTeam > dataManager.numberOfTeams {
+            dataManager.currentTeam += 1
         }
-        dm.totalRounds += 1
-        let VC = ScoreTeamViewController()
-        VC.congratsLabel.text = "УВЫ И АХ!"
-        VC.youGotLabel.text = "Вы не отгадали слово и не получаете очков!"
-        VC.resultLabel.text = "0"
-        VC.resultOfRoundView.backgroundColor = UIColor(red: 0.902, green: 0.275, blue: 0.275, alpha: 1)
+        dataManager.totalRounds += 1
+        let viewController = RoundResultsViewController()
+        viewController.congratutalionLabel.text = "УВЫ И АХ!"
+        viewController.getPointsLabel.text = "Вы не отгадали слово и не получаете очков!"
+        viewController.resultLabel.text = "0"
+        viewController.roundResults.backgroundColor = Theme.red
         timer.invalidate()
-        playSound(soundName: "game-lost")
-        navigationController?.pushViewController(VC, animated: true)
+        playMusicFile(soundName: "game-lost")
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
-    @objc func tapResetButton() {
-        let ac = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить вашу игру и вернуться в главное меню?", preferredStyle: .alert)
+    @objc func resetButtonTapped() {
+        let ac = UIAlertController(title: "Сбросить игру?", message: "Вы хотите сбросить Вашу игру и вернуться в главное меню?", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Отмена", style: .default, handler: nil))
         present(ac, animated: true, completion: nil)
         ac.addAction(UIAlertAction(title: "Да", style: .destructive, handler: { (action: UIAlertAction!) in
@@ -252,5 +223,37 @@ class GameViewController: UIViewController {
                 teams[i].points = 0
             }
         }))
+    }
+}
+
+extension GameViewController {
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            crocoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            crocoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            timerLabel.topAnchor.constraint(equalTo: crocoImage.bottomAnchor, constant: 57),
+            timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            timerLabel.heightAnchor.constraint(equalToConstant: 37),
+            
+            wordLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 90),
+            wordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            wordLabel.heightAnchor.constraint(equalToConstant: 48),
+            
+            ruleLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 10),
+            ruleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            ruleLabel.heightAnchor.constraint(equalToConstant: 48),
+            
+            buttonsStack.topAnchor.constraint(equalTo: ruleLabel.bottomAnchor, constant: 100),
+            buttonsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            buttonsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            buttonsStack.heightAnchor.constraint(equalToConstant: 200),
+        ])
     }
 }

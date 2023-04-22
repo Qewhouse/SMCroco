@@ -95,7 +95,7 @@ final class MainViewController: UIViewController {
     
     @objc private func goToResults() {
         print("Rules")
-        let vc = BestViewController()
+        let vc = BestGamesViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

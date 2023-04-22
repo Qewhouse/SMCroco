@@ -17,8 +17,7 @@ let hobbyArray = ["Дайвинг", "Коллекционирование", "П�
 
 let howToExplainArray = ["Объясни с помощью слов", "Объясни с помощью жестов", "Объясни с помощью рисунка", "Объясняй со злостью", "Объясняй с помощью мимики", "Объясняй вульгарно", "Объясняй сексуально"]
 
-let avatars = [UIImage(named: "Ковбои"), UIImage(named: "Красотки"), UIImage(named: "food")
-]
+let avatars = [UIImage(named: "Ковбои"), UIImage(named: "Красотки"), UIImage(named: "food")]
 
 struct Team {
     var name: String
@@ -26,10 +25,8 @@ struct Team {
     var avatarName: UIImage?
 }
 
-var teams = [
-    Team(name: "Ковбои", points: 0, avatarName: avatars[0]),
-    Team(name: "Красотки", points: 0, avatarName: avatars[1])
-]
+var teams = [Team(name: "Ковбои", points: 0, avatarName: avatars[0]),
+             Team(name: "Красотки", points: 0, avatarName: avatars[1])]
 
 class DataManager {
     static let shared = DataManager()

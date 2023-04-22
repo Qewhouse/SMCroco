@@ -1,5 +1,5 @@
 //
-//  GameResultsViewController.swift
+//  RoundResultsViewController.swift
 //  SMCroco
 //
 //  Created by Alexander Altman on 18.04.2023.
@@ -8,11 +8,14 @@
 import UIKit
 import AVFoundation
 
-class ScoreTeamViewController: UIViewController {
+class RoundResultsViewController: UIViewController {
     
+    //MARK: - Instances
     var audioSession = AVAudioSession.sharedInstance()
     
-    private lazy var backgroundView: UIImageView = {
+    
+    //MARK: - Elements
+    private lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "BackgroundWithoutGrass"))
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +31,7 @@ class ScoreTeamViewController: UIViewController {
         return view
     }()
     
-    private lazy var avatarTeamImage: UIImageView = {
+    private lazy var teamLogo: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "TeamImage"))
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +47,7 @@ class ScoreTeamViewController: UIViewController {
         return label
     }()
     
-    private lazy var teamScoreView: UIView = {
+    private lazy var teamScore: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -62,21 +65,21 @@ class ScoreTeamViewController: UIViewController {
     private lazy var scoreTopLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
-        label.text = "Очки"
+        label.text = "Point(s)"
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var resultOfRoundView: UIView = {
+    var roundResults: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.455, green: 0.655, blue: 0.188, alpha: 1)
+        view.backgroundColor = Theme.appColor
         view.layer.cornerRadius = 20
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    var congratsLabel: UILabel = {
+    var congratutalionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         label.text = "Поздравляем"
@@ -85,7 +88,7 @@ class ScoreTeamViewController: UIViewController {
         return label
     }()
     
-    var youGotLabel: UILabel = {
+    var getPointsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.text = "Вы получаете"
@@ -119,7 +122,7 @@ class ScoreTeamViewController: UIViewController {
         return label
     }()
     
-    private lazy var nextTurnLabel: UILabel = {
+    private lazy var nextTeamLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.text = "следующий ход - \(teams[1].name)"
@@ -128,7 +131,7 @@ class ScoreTeamViewController: UIViewController {
         return label
     }()
     
-    private lazy var passButton: UIButton = {
+    private lazy var passTurnButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 351, height: 60)
         button.backgroundColor = UIColor(red: 0.455, green: 0.655, blue: 0.188, alpha: 1)
@@ -155,6 +158,7 @@ class ScoreTeamViewController: UIViewController {
         return button
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         subviews()
@@ -173,99 +177,29 @@ class ScoreTeamViewController: UIViewController {
         }
     }
     
-    private func subviews() {
-        view.addSubview(backgroundView)
-        backgroundView.addSubview(teamView)
-        backgroundView.addSubview(resultOfRoundView)
-        backgroundView.addSubview(passButton)
-        backgroundView.addSubview(resultsButton)
-        teamView.addSubview(avatarTeamImage)
-        teamView.addSubview(teamNameLabel)
-        teamView.addSubview(teamScoreView)
-        teamScoreView.addSubview(teamScoreLabel)
-        teamScoreView.addSubview(scoreTopLabel)
-        resultOfRoundView.addSubview(congratsLabel)
-        resultOfRoundView.addSubview(youGotLabel)
-        resultOfRoundView.addSubview(starImage)
-        starImage.addSubview(resultLabel)
-        resultOfRoundView.addSubview(scoreLabel)
-        resultOfRoundView.addSubview(nextTurnLabel)
-    }
-    
-    func setupConstraints() {
-        
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            teamView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            teamView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 12),
-            teamView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -12),
-            teamView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            
-            avatarTeamImage.leadingAnchor.constraint(equalTo: teamView.leadingAnchor, constant: 15),
-            avatarTeamImage.topAnchor.constraint(equalTo: teamView.topAnchor, constant: 15),
-            avatarTeamImage.bottomAnchor.constraint(equalTo: teamView.bottomAnchor, constant: -15),
-            avatarTeamImage.widthAnchor.constraint(equalToConstant: 80),
-            avatarTeamImage.heightAnchor.constraint(equalToConstant: 80),
-            
-            teamNameLabel.leadingAnchor.constraint(equalTo: avatarTeamImage.trailingAnchor, constant: 15),
-            teamNameLabel.centerYAnchor.constraint(equalTo: avatarTeamImage.centerYAnchor),
-            
-            teamScoreView.trailingAnchor.constraint(equalTo: teamView.trailingAnchor, constant: -40),
-            teamScoreView.centerYAnchor.constraint(equalTo: avatarTeamImage.centerYAnchor),
-            
-            teamScoreLabel.topAnchor.constraint(equalTo: teamScoreView.topAnchor),
-            teamScoreLabel.centerXAnchor.constraint(equalTo: teamScoreView.centerXAnchor),
-            
-            scoreTopLabel.topAnchor.constraint(equalTo: teamScoreLabel.bottomAnchor),
-            scoreTopLabel.centerXAnchor.constraint(equalTo: teamScoreView.centerXAnchor),
-            scoreTopLabel.bottomAnchor.constraint(equalTo: teamScoreView.bottomAnchor),
-            
-            resultOfRoundView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            resultOfRoundView.topAnchor.constraint(equalTo: teamView.bottomAnchor, constant: 86),
-            resultOfRoundView.heightAnchor.constraint(equalToConstant: 301),
-            resultOfRoundView.widthAnchor.constraint(equalToConstant: 351),
-            
-            congratsLabel.topAnchor.constraint(equalTo: resultOfRoundView.topAnchor, constant: 43),
-            congratsLabel.centerXAnchor.constraint(equalTo: resultOfRoundView.centerXAnchor),
-            
-            youGotLabel.topAnchor.constraint(equalTo: congratsLabel.bottomAnchor, constant: 24),
-            youGotLabel.centerXAnchor.constraint(equalTo: resultOfRoundView.centerXAnchor),
-            
-            starImage.topAnchor.constraint(equalTo: youGotLabel.bottomAnchor, constant: 4),
-            starImage.centerXAnchor.constraint(equalTo: resultOfRoundView.centerXAnchor),
-            starImage.widthAnchor.constraint(equalToConstant: 100),
-            starImage.heightAnchor.constraint(equalToConstant: 100),
-            
-            resultLabel.centerXAnchor.constraint(equalTo: starImage.centerXAnchor),
-            resultLabel.centerYAnchor.constraint(equalTo: starImage.centerYAnchor),
-            
-            scoreLabel.centerXAnchor.constraint(equalTo: resultOfRoundView.centerXAnchor),
-            scoreLabel.topAnchor.constraint(equalTo: starImage.bottomAnchor),
-            
-            nextTurnLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 5),
-            nextTurnLabel.centerXAnchor.constraint(equalTo: resultOfRoundView.centerXAnchor),
-            
-            passButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            passButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 12),
-            passButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -12),
-            passButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            resultsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            resultsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            resultsButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 12),
-            resultsButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -12),
-            resultsButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         teamNames()
+    }
+    
+    //MARK: - Methods
+    private func subviews() {
+        view.addSubview(backgroundImage)
+        backgroundImage.addSubview(teamView)
+        backgroundImage.addSubview(roundResults)
+        backgroundImage.addSubview(passTurnButton)
+        backgroundImage.addSubview(resultsButton)
+        teamView.addSubview(teamLogo)
+        teamView.addSubview(teamNameLabel)
+        teamView.addSubview(teamScore)
+        teamScore.addSubview(teamScoreLabel)
+        teamScore.addSubview(scoreTopLabel)
+        roundResults.addSubview(congratutalionLabel)
+        roundResults.addSubview(getPointsLabel)
+        roundResults.addSubview(starImage)
+        starImage.addSubview(resultLabel)
+        roundResults.addSubview(scoreLabel)
+        roundResults.addSubview(nextTeamLabel)
     }
     
     func teamNames() {
@@ -273,13 +207,13 @@ class ScoreTeamViewController: UIViewController {
         let nextTeam = (currentTeam + 1) % teams.count
         
         teamNameLabel.text = teams[currentTeam].name
-        nextTurnLabel.text = "Следующий ход - \(teams[nextTeam].name)"
+        nextTeamLabel.text = "Следующий ход - \(teams[nextTeam].name)"
     }
     
     func reloadButton(){
         if DataManager.shared.totalRounds == teams.count * 5 {
             DataManager.shared.totalRounds = 0
-            passButton.isHidden = true
+            passTurnButton.isHidden = true
             resultsButton.isHidden = false
         }
     }
@@ -292,9 +226,83 @@ class ScoreTeamViewController: UIViewController {
             self.navigationController?.pushViewController(gameVC, animated: true)
         }
     }
-
+    
     @objc func resultsTapped() {
-        let VC = BestViewController()
+        let VC = GameTotalResultsViewController()
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
+
+//MARK: - Constraints
+extension RoundResultsViewController {
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            teamView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            teamView.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 12),
+            teamView.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -12),
+            teamView.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
+            
+            teamLogo.leadingAnchor.constraint(equalTo: teamView.leadingAnchor, constant: 15),
+            teamLogo.topAnchor.constraint(equalTo: teamView.topAnchor, constant: 15),
+            teamLogo.bottomAnchor.constraint(equalTo: teamView.bottomAnchor, constant: -15),
+            teamLogo.widthAnchor.constraint(equalToConstant: 80),
+            teamLogo.heightAnchor.constraint(equalToConstant: 80),
+            
+            teamNameLabel.leadingAnchor.constraint(equalTo: teamLogo.trailingAnchor, constant: 15),
+            teamNameLabel.centerYAnchor.constraint(equalTo: teamLogo.centerYAnchor),
+            
+            teamScore.trailingAnchor.constraint(equalTo: teamView.trailingAnchor, constant: -40),
+            teamScore.centerYAnchor.constraint(equalTo: teamLogo.centerYAnchor),
+            
+            teamScoreLabel.topAnchor.constraint(equalTo: teamScore.topAnchor),
+            teamScoreLabel.centerXAnchor.constraint(equalTo: teamScore.centerXAnchor),
+            
+            scoreTopLabel.topAnchor.constraint(equalTo: teamScoreLabel.bottomAnchor),
+            scoreTopLabel.centerXAnchor.constraint(equalTo: teamScore.centerXAnchor),
+            scoreTopLabel.bottomAnchor.constraint(equalTo: teamScore.bottomAnchor),
+            
+            roundResults.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
+            roundResults.topAnchor.constraint(equalTo: teamView.bottomAnchor, constant: 86),
+            roundResults.heightAnchor.constraint(equalToConstant: 301),
+            roundResults.widthAnchor.constraint(equalToConstant: 351),
+            
+            congratutalionLabel.topAnchor.constraint(equalTo: roundResults.topAnchor, constant: 43),
+            congratutalionLabel.centerXAnchor.constraint(equalTo: roundResults.centerXAnchor),
+            
+            getPointsLabel.topAnchor.constraint(equalTo: congratutalionLabel.bottomAnchor, constant: 24),
+            getPointsLabel.centerXAnchor.constraint(equalTo: roundResults.centerXAnchor),
+            
+            starImage.topAnchor.constraint(equalTo: getPointsLabel.bottomAnchor, constant: 4),
+            starImage.centerXAnchor.constraint(equalTo: roundResults.centerXAnchor),
+            starImage.widthAnchor.constraint(equalToConstant: 100),
+            starImage.heightAnchor.constraint(equalToConstant: 100),
+            
+            resultLabel.centerXAnchor.constraint(equalTo: starImage.centerXAnchor),
+            resultLabel.centerYAnchor.constraint(equalTo: starImage.centerYAnchor),
+            
+            scoreLabel.centerXAnchor.constraint(equalTo: roundResults.centerXAnchor),
+            scoreLabel.topAnchor.constraint(equalTo: starImage.bottomAnchor),
+            
+            nextTeamLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 5),
+            nextTeamLabel.centerXAnchor.constraint(equalTo: roundResults.centerXAnchor),
+            
+            passTurnButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            passTurnButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passTurnButton.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 12),
+            passTurnButton.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -12),
+            passTurnButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            resultsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            resultsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resultsButton.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 12),
+            resultsButton.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor, constant: -12),
+            resultsButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+}
+
