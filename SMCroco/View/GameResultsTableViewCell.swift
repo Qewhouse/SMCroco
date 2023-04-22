@@ -9,61 +9,43 @@ import UIKit
 
 class GameResultsTableViewCell: UITableViewCell {
     
-    var imageLogo: UIImageView = {
+    //MARK: - Elements
+    var teamLogo: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    var labelNameTeam: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
+    var teamNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Marker Felt Thin", size: 30)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var labelCount: UILabel = {
+    var scoreLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 56)
+        label.font = UIFont(name: "Marker Felt Thin", size: 60)
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
- }()
+    }()
     
-    var labelPoint: UILabel = {
+    var pointsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "Очки"
+        label.font = UIFont(name: "Marker Felt Thin", size: 15)
+        label.textAlignment = .center
+        label.text = "Point(s)"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
- }()
+    }()
     
+    //MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(imageLogo)
-        contentView.addSubview(labelNameTeam)
-        contentView.addSubview(labelCount)
-        contentView.addSubview(labelPoint)
-        
-        imageLogo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        imageLogo.widthAnchor.constraint(equalToConstant: 56).isActive = true
-        imageLogo.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        imageLogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 33).isActive = true
-        
-        labelNameTeam.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50).isActive = true
-        labelNameTeam.leadingAnchor.constraint(equalTo: imageLogo.trailingAnchor, constant: 34).isActive = true
-        labelNameTeam.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30).isActive = true
-        labelNameTeam.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        
-        labelCount.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30).isActive = true
-        labelCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
-        labelCount.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
-        labelCount.widthAnchor.constraint(equalToConstant: 57).isActive = true
-        
-        labelPoint.topAnchor.constraint(equalTo: labelCount.bottomAnchor, constant: 0).isActive = true
-        labelPoint.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
-        labelPoint.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        labelPoint.widthAnchor.constraint(equalToConstant: 57).isActive = true
-        
+        setLayout()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -73,17 +55,52 @@ class GameResultsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    //MARK: - Methods
+    func setLayout() {
+        contentView.addSubview(teamLogo)
+        contentView.addSubview(teamNameLabel)
+        contentView.addSubview(scoreLabel)
+        contentView.addSubview(pointsLabel)
+    }
+    
     func set(buttonImage: String) {
-        imageLogo.image = UIImage(named: buttonImage)
+        teamLogo.image = UIImage(named: buttonImage)
     }
     
     func set(teamName: String){
-        labelNameTeam.text = teamName
+        teamNameLabel.text = teamName
     }
-    
+}
+
+//MARK: - Constraints
+extension GameResultsTableViewCell {
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            teamLogo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            teamLogo.widthAnchor.constraint(equalToConstant: 56),
+            teamLogo.heightAnchor.constraint(equalToConstant: 56),
+            teamLogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            teamLogo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            
+            teamNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            teamNameLabel.leadingAnchor.constraint(equalTo: teamLogo.trailingAnchor, constant: 34),
+            teamNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
+            teamNameLabel.widthAnchor.constraint(equalToConstant: 160),
+            
+            scoreLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            scoreLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            scoreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            scoreLabel.widthAnchor.constraint(equalToConstant: 57),
+            
+            pointsLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 0),
+            pointsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            pointsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            pointsLabel.widthAnchor.constraint(equalToConstant: 57)
+        ])
+    }
 }

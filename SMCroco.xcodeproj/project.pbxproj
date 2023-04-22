@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		370A6ABE29F086D50095803D /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6ABD29F086D50095803D /* Rules.swift */; };
 		370A6AC229F3F4580095803D /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6AC129F3F4580095803D /* GameModel.swift */; };
-		370A6AC429F3FA320095803D /* BestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6AC329F3FA320095803D /* BestViewController.swift */; };
+		370A6AC429F3FA320095803D /* GameTotalResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6AC329F3FA320095803D /* GameTotalResultsViewController.swift */; };
 		370A6AC629F400A60095803D /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6AC529F400A60095803D /* ResultsTableViewCell.swift */; };
 		370A6AC829F40B150095803D /* TeamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A6AC729F40B150095803D /* TeamsTableViewCell.swift */; };
 		37A4E36529EDB51D00AD2B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E36429EDB51D00AD2B3E /* AppDelegate.swift */; };
@@ -22,11 +22,11 @@
 		37A4E38029EE01EA00AD2B3E /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E37F29EE01EA00AD2B3E /* RulesViewController.swift */; };
 		37A4E38229EE020000AD2B3E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38129EE020000AD2B3E /* CategoryViewController.swift */; };
 		37A4E38429EE021500AD2B3E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38329EE021500AD2B3E /* GameViewController.swift */; };
-		37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */; };
+		37A4E38A29EE024800AD2B3E /* RoundResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4E38929EE024800AD2B3E /* RoundResultsViewController.swift */; };
 		37F598FD29F434700013355F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37F598FC29F434700013355F /* SnapKit */; };
 		37F598FF29F435740013355F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F598FE29F435740013355F /* CategoryCell.swift */; };
 		37F5990129F436560013355F /* GameResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5990029F436560013355F /* GameResultsTableViewCell.swift */; };
-		37F5990329F436FE0013355F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5990229F436FE0013355F /* ResultsViewController.swift */; };
+		37F5990329F436FE0013355F /* BestGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F5990229F436FE0013355F /* BestGamesViewController.swift */; };
 		37F5990829F437870013355F /* pravilnyiy-otvet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37F5990529F437870013355F /* pravilnyiy-otvet.wav */; };
 		37F5990929F437870013355F /* game-lost.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37F5990629F437870013355F /* game-lost.wav */; };
 		37F5990A29F437870013355F /* 10sec.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37F5990729F437870013355F /* 10sec.wav */; };
@@ -35,7 +35,7 @@
 /* Begin PBXFileReference section */
 		370A6ABD29F086D50095803D /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		370A6AC129F3F4580095803D /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
-		370A6AC329F3FA320095803D /* BestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestViewController.swift; sourceTree = "<group>"; };
+		370A6AC329F3FA320095803D /* GameTotalResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTotalResultsViewController.swift; sourceTree = "<group>"; };
 		370A6AC529F400A60095803D /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		370A6AC729F40B150095803D /* TeamsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableViewCell.swift; sourceTree = "<group>"; };
 		37A4E36129EDB51D00AD2B3E /* SMCroco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMCroco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,10 +50,10 @@
 		37A4E37F29EE01EA00AD2B3E /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		37A4E38129EE020000AD2B3E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		37A4E38329EE021500AD2B3E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsViewController.swift; sourceTree = "<group>"; };
+		37A4E38929EE024800AD2B3E /* RoundResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundResultsViewController.swift; sourceTree = "<group>"; };
 		37F598FE29F435740013355F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		37F5990029F436560013355F /* GameResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsTableViewCell.swift; sourceTree = "<group>"; };
-		37F5990229F436FE0013355F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		37F5990229F436FE0013355F /* BestGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestGamesViewController.swift; sourceTree = "<group>"; };
 		37F5990529F437870013355F /* pravilnyiy-otvet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pravilnyiy-otvet.wav"; sourceTree = "<group>"; };
 		37F5990629F437870013355F /* game-lost.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-lost.wav"; sourceTree = "<group>"; };
 		37F5990729F437870013355F /* 10sec.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 10sec.wav; sourceTree = "<group>"; };
@@ -88,9 +88,9 @@
 				37A4E37F29EE01EA00AD2B3E /* RulesViewController.swift */,
 				37A4E38129EE020000AD2B3E /* CategoryViewController.swift */,
 				37A4E38329EE021500AD2B3E /* GameViewController.swift */,
-				37A4E38929EE024800AD2B3E /* GameResultsViewController.swift */,
-				370A6AC329F3FA320095803D /* BestViewController.swift */,
-				37F5990229F436FE0013355F /* ResultsViewController.swift */,
+				37A4E38929EE024800AD2B3E /* RoundResultsViewController.swift */,
+				370A6AC329F3FA320095803D /* GameTotalResultsViewController.swift */,
+				37F5990229F436FE0013355F /* BestGamesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,9 +246,9 @@
 			files = (
 				37A4E36929EDB51D00AD2B3E /* MainViewController.swift in Sources */,
 				37F598FF29F435740013355F /* CategoryCell.swift in Sources */,
-				370A6AC429F3FA320095803D /* BestViewController.swift in Sources */,
+				370A6AC429F3FA320095803D /* GameTotalResultsViewController.swift in Sources */,
 				370A6AC629F400A60095803D /* ResultsTableViewCell.swift in Sources */,
-				37F5990329F436FE0013355F /* ResultsViewController.swift in Sources */,
+				37F5990329F436FE0013355F /* BestGamesViewController.swift in Sources */,
 				37F5990129F436560013355F /* GameResultsTableViewCell.swift in Sources */,
 				370A6ABE29F086D50095803D /* Rules.swift in Sources */,
 				37A4E37929EDC05100AD2B3E /* Theme.swift in Sources */,
@@ -259,7 +259,7 @@
 				370A6AC829F40B150095803D /* TeamsTableViewCell.swift in Sources */,
 				37A4E38029EE01EA00AD2B3E /* RulesViewController.swift in Sources */,
 				37A4E36729EDB51D00AD2B3E /* SceneDelegate.swift in Sources */,
-				37A4E38A29EE024800AD2B3E /* GameResultsViewController.swift in Sources */,
+				37A4E38A29EE024800AD2B3E /* RoundResultsViewController.swift in Sources */,
 				370A6AC229F3F4580095803D /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,11 @@ enum Theme {
     static let neutralColor: UIColor = UIColor(named: "NeutralColor")!
     static let orangeColor: UIColor = UIColor(named: "orangeColor")!
     
+    static let pink: UIColor = UIColor(named: "1")!
+    static let yellow: UIColor = UIColor(named: "2")!
+    static let blue: UIColor = UIColor(named: "3")!
+    static let red: UIColor = UIColor(named: "4")!
+    
 }
 
 
