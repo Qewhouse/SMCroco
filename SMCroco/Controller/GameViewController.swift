@@ -14,9 +14,11 @@ class GameViewController: UIViewController {
     var timer = Timer()
     var counter = 60
     var player: AVAudioPlayer!
-    var word = ""
-    var explanationType = ""
+    var index = 0
+//    var explanationType = ""
     var audioSession = AVAudioSession.sharedInstance()
+    let categoryNames = [0: animalsArray, 1: foodArray, 2: peopleArray, 3: hobbyArray]
+    lazy var word = categoryNames[index]?.randomElement() ?? ""
     
     //MARK: - Elements
     private let backgroundImage: UIImageView = {
@@ -47,6 +49,9 @@ class GameViewController: UIViewController {
     private lazy var wordLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 48, weight: .bold)
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
         label.text = word
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -242,8 +247,9 @@ extension GameViewController {
             timerLabel.heightAnchor.constraint(equalToConstant: 37),
             
             wordLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 90),
-            wordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            wordLabel.heightAnchor.constraint(equalToConstant: 48),
+            wordLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            wordLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            wordLabel.bottomAnchor.constraint(equalTo: ruleLabel.topAnchor, constant: -20),
             
             ruleLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 10),
             ruleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),

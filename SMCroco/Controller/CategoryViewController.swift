@@ -120,6 +120,9 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         print(cell.imageCheched())
         if cell.imageCheched() {
             startButton.tag = indexPath.section
+            let vc = GameViewController()
+            vc.index = startButton.tag
+            print(vc.index)
         }
     }
 }
