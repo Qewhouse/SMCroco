@@ -12,7 +12,7 @@ class RoundResultsViewController: UIViewController {
     
     //MARK: - Instances
     var audioSession = AVAudioSession.sharedInstance()
-    
+    var index = 0
     
     //MARK: - Elements
     private lazy var backgroundImage: UIImageView = {
@@ -165,6 +165,7 @@ class RoundResultsViewController: UIViewController {
         setupConstraints()
         navigationItem.hidesBackButton = true
         reloadButton()
+        print(index)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -223,6 +224,7 @@ class RoundResultsViewController: UIViewController {
             let nextTeam = (DataManager.shared.currentTeam + 1) % teams.count
             DataManager.shared.currentTeam = nextTeam
             let gameVC = GameViewController()
+            gameVC.index = index
             self.navigationController?.pushViewController(gameVC, animated: true)
         }
     }

@@ -63,10 +63,17 @@ class CategoryViewController: UIViewController {
         view.addSubview(startButton)
     }
     
+    func prepareWordsArray() {
+        
+    }
+    
     @objc private func showNext(sender: UIButton) {
         let gameVC = GameViewController()
+//        let resultVC = RoundResultsViewController()
         let number = sender.tag
         gameVC.word = categoryNames[number]?.randomElement() ?? ""
+        gameVC.index = number
+//        resultVC.index = number
         navigationController?.pushViewController(gameVC, animated: true)
     }
 }
@@ -121,7 +128,8 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate {
         if cell.imageCheched() {
             startButton.tag = indexPath.section
             let vc = GameViewController()
-            vc.index = startButton.tag
+            let tag = startButton.tag
+            vc.index = tag
             print(vc.index)
         }
     }

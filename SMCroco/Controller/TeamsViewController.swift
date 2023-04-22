@@ -96,7 +96,7 @@ class TeamsViewController: UIViewController {
             guard let textField = ac.textFields?.first else { return }
             let name = textField.text
             if let name = name {
-                teams.append(Team(name: name, points: 0,avatarName: (avatars.randomElement()!)))
+                teams.append(Team(name: name, points: 0,avatarName: (teamLogos.randomElement()!)))
                 self.teamsTableView.reloadData()
             }
         }))

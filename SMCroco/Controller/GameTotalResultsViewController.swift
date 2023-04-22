@@ -9,6 +9,8 @@ import UIKit
 
 class GameTotalResultsViewController: UIViewController {
     
+    let defaults = UserDefaults.standard
+    
     //MARK: - Elements
     private lazy var resultsLabel: UILabel = {
        let label = UILabel()
@@ -50,7 +52,7 @@ class GameTotalResultsViewController: UIViewController {
         button.addTarget(self, action: #selector(playAgain), for: .touchUpInside)
         return button
     }()
-
+    
 //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,13 +131,11 @@ extension GameTotalResultsViewController: UITableViewDelegate, UITableViewDataSo
         cell.clipsToBounds = true
 
         switch indexPath.section {
-            
         default:
             let team = teams[indexPath.section]
             cell.teamLogo.image = team.avatarName
             cell.teamNameLabel.text = team.name
             cell.scoreLabel.text = String(team.points)
-
         }
         return cell
       }

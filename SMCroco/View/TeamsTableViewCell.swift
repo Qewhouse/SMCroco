@@ -14,26 +14,26 @@ class TeamsTableViewCell: UITableViewCell {
     
     //  MARK: - Elements
     private lazy var playerImage: UIImageView = {
-        let element = UIImageView()
-        return element
+        let image = UIImageView()
+        return image
     }()
     
     private lazy var playerLabel: UILabel = {
-        let element = UILabel()
-        element.textAlignment = .center
-        element.numberOfLines = 0
-        element.font = UIFont.systemFont(ofSize: 22)
-        return element
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont(name: "Marker Felt Thin", size: 40)
+        return label
     }()
     
     var removeButton: UIButton = {
-        let element = UIButton(type: .system)
+        let button = UIButton(type: .system)
         let image = UIImage(systemName: "xmark")
-        element.isHidden = true
-        element.setImage(image, for: .normal)
-        element.tintColor = .black
-        element.backgroundColor = .white
-        return element
+        button.isHidden = true
+        button.setImage(image, for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
+        return button
     }()
     
     //  MARK: - Init

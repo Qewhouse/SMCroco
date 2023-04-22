@@ -8,9 +8,13 @@
 import UIKit
 
 class BestGamesViewController: UIViewController {
+    let defaults = UserDefaults.standard
     
     //MARK: - Instances
-    var teamNamesArray = ["Ковбои", "Стройняшки", "Красотки", "Краказябы", "Войны", "Викинги", "Космонавты", "Пилоты", "Повора", "Уродцы"]
+    var teamLogos = [UIImage(named: "food"), UIImage(named: "frog"), UIImage(named: "hobby"), UIImage(named: "people")]
+    var teamName = ["Ковбои", "Красотки", "Челики", "Жуки", "Киборги", "Роботы"]
+    lazy var shuffledTeamNames = teamName.shuffled()
+    lazy var shuffledTeamLogos = teamLogos.shuffled()
     var points = String(5)
     
     //MARK: - Elements
@@ -73,12 +77,8 @@ class BestGamesViewController: UIViewController {
         view.addSubview(clearResultsButton)
     }
     
-    @objc func playAgain () {
-        let destinationViewController = TeamsViewController()
-        self.navigationController?.pushViewController(destinationViewController, animated: true)
-    }
     @objc func clearResultsTapped () {
-        teamNamesArray = []
+        teamName = []
     }
 }
 
@@ -112,7 +112,7 @@ extension BestGamesViewController {
 extension BestGamesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        teamNamesArray.count
+        teamName.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,8 +129,9 @@ extension BestGamesViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
             
         default:
-            cell.teamLogo.image = UIImage(named: teamNamesArray.randomElement() ?? "")
-            cell.teamNameLabel.text = teamNamesArray.randomElement() ?? "Look"
+            
+            cell.teamLogo.image = shuffledTeamLogos.randomElement()!
+            cell.teamNameLabel.text = shuffledTeamNames.randomElement() ?? "Look"
             cell.scoreLabel.text = points
             
         }
@@ -151,31 +152,3 @@ extension BestGamesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
-import SwiftUI
-struct ListProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone 12 Pro Max")
-            .previewDisplayName("iPhone 12 Pro Max")
-        
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone SE (3rd generation)")
-            .previewDisplayName("iPhone SE (3rd generation)")
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        let listVC = BestGamesViewController()
-        func makeUIViewController(context:
-                                  UIViewControllerRepresentableContext<ListProvider.ContainterView>) -> BestGamesViewController {
-            return listVC
-        }
-        
-        func updateUIViewController(_ uiViewController:
-                                    ListProvider.ContainterView.UIViewControllerType, context:
-                                    UIViewControllerRepresentableContext<ListProvider.ContainterView>) {
-        }
-    }
-}
-
-
